@@ -1,65 +1,31 @@
 import { motion } from 'framer-motion';
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.14 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring' as const, stiffness: 100, damping: 20 },
-  },
-};
+import PhysicsLetters from './PhysicsLetters';
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-8 pt-20">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="max-w-3xl text-center"
-      >
-        <motion.p
-          variants={item}
-          className="font-mono text-zinc-500 text-sm tracking-widest uppercase mb-6"
-        >
+    <section className="relative min-h-screen overflow-hidden bg-black">
+      {/* Subtitle label — above the simulation, clears the fixed navbar (~64px) */}
+      <div className="absolute top-20 inset-x-0 flex justify-center z-20 pointer-events-none">
+        <p className="font-mono text-zinc-500 text-sm tracking-widest uppercase">
           CS + Statistics · Cornell University
-        </motion.p>
-        <motion.h1
-          variants={item}
-          className="text-6xl sm:text-7xl font-bold tracking-tight text-white mb-6 leading-tight"
-        >
-          Jason Guo
-        </motion.h1>
-        <motion.p
-          variants={item}
-          className="text-lg text-zinc-400 mb-10 leading-relaxed max-w-2xl mx-auto"
-        >
-          I build software at the intersection of data and human experience —
-          from AI-powered applications to full-stack systems grounded in
-          statistical thinking.
-        </motion.p>
-        <motion.div variants={item} className="flex gap-4 justify-center flex-wrap">
-          <a
-            href="#projects"
-            className="px-6 py-3 rounded-lg bg-white text-black text-sm font-medium hover:bg-zinc-200 transition-colors duration-200"
-          >
-            View My Work
-          </a>
-          <a
-            href="#contact"
-            className="px-6 py-3 rounded-lg border border-white/10 hover:border-white/30 text-white text-sm font-medium transition-colors duration-200"
-          >
-            Get in Touch
-          </a>
-        </motion.div>
-      </motion.div>
+        </p>
+      </div>
+
+      {/* Physics letter simulation */}
+      <PhysicsLetters />
+
+      {/* Scroll hint — clickable, navigates to About */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll to About section"
+        className="absolute bottom-8 inset-x-0 flex justify-center z-20 cursor-pointer"
+        animate={{ opacity: [0.3, 0.8, 0.3] }}
+        transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+      >
+        <p className="font-mono text-zinc-400 text-base tracking-widest uppercase">
+          scroll
+        </p>
+      </motion.a>
     </section>
   );
 }
