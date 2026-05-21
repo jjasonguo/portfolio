@@ -141,6 +141,11 @@ export default function PhysicsLetters() {
 
     const mouse = Matter.Mouse.create(canvas);
     mouse.pixelRatio = dpr;
+    // Matter.Mouse.create attaches a non-passive 'wheel' listener that
+    // preventDefaults every scroll over the canvas. Strip it so the page can
+    // scroll while drag (mousedown/move/up) still works.
+    const matterWheel = (mouse as unknown as { mousewheel: EventListener }).mousewheel;
+    canvas.removeEventListener('wheel', matterWheel);
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
       mouse,
       constraint: { stiffness: 0.2, render: { visible: false } },
@@ -238,9 +243,6 @@ export default function PhysicsLetters() {
     };
     rafId = requestAnimationFrame(tick);
 
-    const onWheel = (e: WheelEvent) => { window.scrollBy(0, e.deltaY * 3); };
-    canvas.addEventListener('wheel', onWheel, { passive: true });
-
     let resizeTimeout: ReturnType<typeof setTimeout>;
     let firstObservation = true;
     const observer = new ResizeObserver(() => {
@@ -258,7 +260,6 @@ export default function PhysicsLetters() {
       Matter.Events.off(mouseConstraint, 'enddrag', onDrop);
       Matter.Engine.clear(engine);
       Matter.World.clear(world, false);
-      canvas.removeEventListener('wheel', onWheel);
       observer.disconnect();
       clearTimeout(resizeTimeout);
       letters.forEach(el => { if (el) el.style.opacity = '0'; });
