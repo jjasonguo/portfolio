@@ -270,8 +270,9 @@ export default function PhysicsLetters() {
         <span
           key={i}
           ref={el => { letterRefs.current[i] = el; }}
-          className="absolute top-0 left-0 select-none pointer-events-none font-black text-white leading-none"
+          className="absolute top-0 left-0 select-none pointer-events-none text-white leading-none"
           style={{
+            fontFamily: "'Fredoka One', cursive",
             fontSize: 'clamp(90px, 16vw, 200px)',
             WebkitTextStroke: '2px rgba(255,255,255,0.1)',
             willChange: 'transform',
