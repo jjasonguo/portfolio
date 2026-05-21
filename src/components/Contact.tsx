@@ -23,11 +23,10 @@ export default function Contact() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <motion.h2 variants={item} className="text-3xl font-bold text-white mb-4">
-            Let's work together
+            Contact
           </motion.h2>
           <motion.p variants={item} className="text-lg text-zinc-400 mb-10 leading-relaxed">
-            I'm open to internships, research collaborations, and interesting projects.
-            Whether it's a quick question or a big idea — reach out.
+            Feel free to give me a job
           </motion.p>
           <motion.div variants={item}>
             <a
@@ -39,7 +38,7 @@ export default function Contact() {
             </a>
           </motion.div>
           <motion.p variants={item} className="mt-16 font-mono text-xs text-zinc-600">
-            &copy; {new Date().getFullYear()} Jason Guo. Built with React &amp; Framer Motion.
+            &copy; {new Date().getFullYear()} Jason Guo. Built with Claude Code &amp; a lot of tokens
           </motion.p>
         </motion.div>
       </div>

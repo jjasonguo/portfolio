@@ -2,29 +2,38 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    role: 'Software Engineer, Intern',
-    company: 'Social Media Co.',
-    detail: 'Ads Interface',
+    role: 'Software Engineer Intern',
+    company: 'TikTok',
+    detail: 'Ads Interface and Platform',
     period: 'Summer 2026',
-    description: 'Incoming intern on the Ads Interface team, working on large-scale advertising systems.',
+    description: 'doomscrolling',
     upcoming: true,
   },
   {
-    role: 'Full-Stack Developer',
+    role: 'Fullstack Development Intern',
     company: 'Chapter One',
     detail: null,
     period: '2024 – 2025',
     description:
-      'Built and maintained full-stack features across a consumer-facing product. Worked across the React frontend and Node.js backend, shipping features end-to-end.',
+      'Vibecoded a CRM app from the ground up supporting 150+ business owners',
     upcoming: false,
   },
   {
-    role: 'ML / Bioinformatics Researcher',
-    company: 'Cornell University',
+    role: 'Software Engineer Intern',
+    company: 'Xoul.ai',
     detail: null,
     period: '2023 – 2024',
     description:
-      'Applied machine learning techniques to biological datasets, developing models for pattern recognition and statistical analysis in genomic data.',
+      'Learned about RAG',
+    upcoming: false,
+  },
+  {
+    role: 'Bioinformatics Intern',
+    company: 'Brigham and Women\'s Hospital',
+    detail: null,
+    period: '2022 – 2023',
+    description:
+      'ChIP-seq on lung fibroblasts',
     upcoming: false,
   },
 ];

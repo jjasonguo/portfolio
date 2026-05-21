@@ -2,13 +2,6 @@ import { motion } from 'framer-motion';
 
 const projects = [
   {
-    title: 'ResuMax',
-    description:
-      'AI-powered job application agent that automates resume tailoring, cover letter generation, and application workflows using large language models.',
-    tags: ['Python', 'LLMs', 'AI Agents', 'FastAPI'],
-    href: '#',
-  },
-  {
     title: 'Duck Duck Debug',
     description:
       'AI debugging assistant that helps developers identify, explain, and fix bugs through conversational interaction — rubber duck debugging, but smarter.',
@@ -16,10 +9,31 @@ const projects = [
     href: '#',
   },
   {
+    title: 'CornellGo',
+    description:
+      'University-wide student-facing mobile app for exploring and engaging with campus life.',
+    tags: ['Flutter', 'Nest.js', 'PostgreSQL'],
+    href: '#',
+  },
+  {
     title: 'Munch!',
     description:
       'Mobile food tracking app with nutritional analysis, meal logging, and personalized insights to help users build healthier eating habits.',
     tags: ['React Native', 'Node.js', 'PostgreSQL'],
+    href: '#',
+  },
+  {
+    title: 'Derivatives Trading Algorithm',
+    description:
+      'An algorithmic trading strategy that won $1,000 in a competition!',
+    tags: ['Python', 'Options Market Making'],
+    href: '#',
+  },
+    {
+    title: 'ResuMax',
+    description:
+      'AI-powered job application agent that automates resume tailoring, cover letter generation, and application workflows using large language models.',
+    tags: ['Python', 'LLMs', 'AI Agents', 'FastAPI'],
     href: '#',
   },
 ];
@@ -46,7 +60,7 @@ export default function Projects() {
           transition={{ ...spring, delay: 0.08 }}
           className="text-zinc-400 mb-16"
         >
-          A selection of things I've built
+          Some things I've built:
         </motion.p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (

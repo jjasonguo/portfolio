@@ -16,7 +16,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 bg-black/80 backdrop-blur-md border-b border-white/10"
     >
       <span className="text-base font-semibold tracking-tight text-white">
-        jason.
+        jason's portfolio :)
       </span>
       <nav className="flex gap-8">
         {links.map(({ label, href }) => (

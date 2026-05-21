@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 const skills = [
-  { category: 'Languages', items: ['Python', 'TypeScript', 'R', 'Java', 'SQL'] },
-  { category: 'Frameworks', items: ['React', 'Node.js', 'PyTorch', 'scikit-learn', 'FastAPI'] },
-  { category: 'Areas', items: ['Machine Learning', 'Statistical Modeling', 'Full-Stack Dev', 'AI / LLMs'] },
+  { category: 'Languages', items: ['Java', 'Python', 'R', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL', 'OCaml', 'C++', 'C', 'Dart'] },
+  { category: 'Frameworks & Libraries', items: ['React', 'React Native', 'Node.js', 'Express', 'NestJS', 'Flask', 'PyTorch', 'TensorFlow', 'Flutter'] },
+  { category: 'Databases & Tools', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'GraphQL', 'Git', 'Postman', 'Unix'] },
 ];
 
 const spring = { type: 'spring' as const, stiffness: 100, damping: 20 };
@@ -29,17 +29,18 @@ export default function About() {
             transition={spring}
           >
             <p className="text-lg text-zinc-400 leading-relaxed mb-6">
-              I'm a double major in{' '}
-              <span className="text-white">Computer Science</span> and{' '}
-              <span className="text-white">Statistics</span> at Cornell University —
-              drawn equally to the rigor of mathematical reasoning and the craft of
-              building software.
+              Hi I'm Jason. I'm currently a double major in{' '}
+              <span className="text-white font-bold">Computer Science</span> and{' '}
+              <span className="text-white font-bold">Statistics</span> at Cornell University. I love math,
+              problem solving, building things, and breaking things,
             </p>
             <p className="text-lg text-zinc-400 leading-relaxed">
-              My work sits at the intersection of data and engineering. I've built
-              AI-powered tools, contributed to full-stack products, and applied
-              machine learning in bioinformatics research. I care about systems that
-              are not just functional, but analytically sound.
+              I am interested in everything from machine learning and AI to full-stack web development. 
+              On campus, I am involved in{' '}
+              <span className="text-white font-bold">Cornell DTI</span> where I ship products facing the cornell community and{' '}
+              <span className="text-white font-bold">Cornell Quant Fund</span> where I apply math and programming knowledge to financial markets.
+              This summer, I will be interning at{' '}
+              <span className="text-white font-bold">TikTok</span> on the Ads Interface and Platform Team in San Jose!
             </p>
           </motion.div>
           <motion.div
