@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../ThemeContext';
+import { useTorch } from '../hooks/useTorch';
+import TorchOverlay from './TorchOverlay';
 
 const projects = [
   {
@@ -29,7 +32,7 @@ const projects = [
     tags: ['Python', 'Options Market Making'],
     href: '#',
   },
-    {
+  {
     title: 'ResuMax',
     description:
       'AI-powered job application agent that automates resume tailoring, cover letter generation, and application workflows using large language models.',
@@ -41,15 +44,25 @@ const projects = [
 const spring = { type: 'spring' as const, stiffness: 100, damping: 20 };
 
 export default function Projects() {
+  const { isDark } = useTheme();
+  const { sectionRef, overlayRef, torchRef, handleMouseMove, handleMouseLeave } = useTorch(isDark);
+
   return (
-    <section id="projects" className="py-32 px-8">
+    <section
+      id="projects"
+      className="py-32 px-8 relative overflow-hidden"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ cursor: isDark ? 'none' : undefined }}
+    >
       <div className="max-w-5xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={spring}
-          className="text-3xl font-bold text-white mb-3"
+          className={`text-3xl font-bold mb-3 ${isDark ? 'text-white' : 'text-black'}`}
         >
           Projects
         </motion.h2>
@@ -58,7 +71,7 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ ...spring, delay: 0.08 }}
-          className="text-zinc-400 mb-16"
+          className={`mb-16 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}
         >
           Some things I've built:
         </motion.p>
@@ -72,15 +85,23 @@ export default function Projects() {
               viewport={{ once: true, margin: '-100px' }}
               transition={{ ...spring, delay: i * 0.08 }}
               whileHover={{ y: -4 }}
-              className="block p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 transition-colors duration-200 cursor-pointer"
+              className={`block p-6 rounded-2xl border transition-colors duration-200 cursor-pointer ${
+                isDark
+                  ? 'bg-white/[0.02] border-white/10 hover:border-white/30'
+                  : 'bg-black/[0.02] border-black/10 hover:border-black/30'
+              }`}
             >
-              <h3 className="text-white font-semibold text-lg mb-2">{project.title}</h3>
-              <p className="text-zinc-400 text-sm mb-5 leading-relaxed">{project.description}</p>
+              <h3 className={`font-semibold text-lg mb-2 ${isDark ? 'text-white' : 'text-black'}`}>{project.title}</h3>
+              <p className={`text-sm mb-5 leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-mono text-xs px-2 py-1 rounded-md bg-white/[0.04] border border-white/10 text-zinc-400"
+                    className={`font-mono text-xs px-2 py-1 rounded-md border ${
+                      isDark
+                        ? 'bg-white/[0.04] border-white/10 text-zinc-400'
+                        : 'bg-black/[0.04] border-black/10 text-zinc-600'
+                    }`}
                   >
                     {tag}
                   </span>
@@ -90,6 +111,8 @@ export default function Projects() {
           ))}
         </div>
       </div>
+
+      {isDark && <TorchOverlay overlayRef={overlayRef} torchRef={torchRef} />}
     </section>
   );
 }

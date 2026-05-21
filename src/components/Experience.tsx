@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../ThemeContext';
+import { useTorch } from '../hooks/useTorch';
+import TorchOverlay from './TorchOverlay';
 
 const experiences = [
   {
@@ -14,8 +17,7 @@ const experiences = [
     company: 'Chapter One',
     detail: null,
     period: '2024 – 2025',
-    description:
-      'Vibecoded a CRM app from the ground up supporting 150+ business owners',
+    description: 'Vibecoded a CRM app from the ground up supporting 150+ business owners',
     upcoming: false,
   },
   {
@@ -23,8 +25,7 @@ const experiences = [
     company: 'Xoul.ai',
     detail: null,
     period: '2023 – 2024',
-    description:
-      'Learned about RAG',
+    description: 'Learned about RAG',
     upcoming: false,
   },
   {
@@ -32,8 +33,7 @@ const experiences = [
     company: 'Brigham and Women\'s Hospital',
     detail: null,
     period: '2022 – 2023',
-    description:
-      'ChIP-seq on lung fibroblasts',
+    description: 'ChIP-seq on lung fibroblasts',
     upcoming: false,
   },
 ];
@@ -41,15 +41,25 @@ const experiences = [
 const spring = { type: 'spring' as const, stiffness: 100, damping: 20 };
 
 export default function Experience() {
+  const { isDark } = useTheme();
+  const { sectionRef, overlayRef, torchRef, handleMouseMove, handleMouseLeave } = useTorch(isDark);
+
   return (
-    <section id="experience" className="py-32 px-8">
+    <section
+      id="experience"
+      className="py-32 px-8 relative overflow-hidden"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ cursor: isDark ? 'none' : undefined }}
+    >
       <div className="max-w-4xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={spring}
-          className="text-3xl font-bold text-white mb-16"
+          className={`text-3xl font-bold mb-16 ${isDark ? 'text-white' : 'text-black'}`}
         >
           Experience
         </motion.h2>
@@ -61,29 +71,32 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ ...spring, delay: i * 0.08 }}
-              className="border-t border-white/10 py-10 grid md:grid-cols-[180px_1fr] gap-6"
+              className={`border-t py-10 grid md:grid-cols-[180px_1fr] gap-6 ${isDark ? 'border-white/10' : 'border-black/10'}`}
             >
               <div>
                 <p className="font-mono text-sm text-zinc-500">{exp.period}</p>
                 {exp.upcoming && (
-                  <span className="inline-block mt-2 font-mono text-xs px-2 py-0.5 border border-white/20 text-zinc-400 rounded">
+                  <span className={`inline-block mt-2 font-mono text-xs px-2 py-0.5 border rounded ${
+                    isDark ? 'border-white/20 text-zinc-400' : 'border-black/20 text-zinc-500'
+                  }`}>
                     upcoming
                   </span>
                 )}
               </div>
               <div>
-                <h3 className="text-white font-medium text-lg mb-1">{exp.role}</h3>
+                <h3 className={`font-medium text-lg mb-1 ${isDark ? 'text-white' : 'text-black'}`}>{exp.role}</h3>
                 <p className="font-mono text-sm text-zinc-500 mb-3">
-                  {exp.company}
-                  {exp.detail ? ` · ${exp.detail}` : ''}
+                  {exp.company}{exp.detail ? ` · ${exp.detail}` : ''}
                 </p>
-                <p className="text-zinc-400 leading-relaxed">{exp.description}</p>
+                <p className={`leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{exp.description}</p>
               </div>
             </motion.div>
           ))}
-          <div className="border-t border-white/10" />
+          <div className={`border-t ${isDark ? 'border-white/10' : 'border-black/10'}`} />
         </div>
       </div>
+
+      {isDark && <TorchOverlay overlayRef={overlayRef} torchRef={torchRef} />}
     </section>
   );
 }

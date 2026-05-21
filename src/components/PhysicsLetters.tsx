@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTheme } from '../ThemeContext';
 import Matter from 'matter-js';
 
 const LETTERS = ['J', 'A', 'S', 'O', 'N', 'G', 'U', 'O'];
@@ -12,6 +13,7 @@ const SPRING_DAMP = 0.92;  // velocity damping per step
 const SPREAD      = 0.18;  // how much displacement leaks to neighbors per step
 
 export default function PhysicsLetters() {
+  const { isDark } = useTheme();
   const containerRef   = useRef<HTMLDivElement>(null);
   const canvasRef      = useRef<HTMLCanvasElement>(null); // invisible — mouse events
   const waterCanvasRef = useRef<HTMLCanvasElement>(null); // visible — wave rendering
@@ -270,11 +272,11 @@ export default function PhysicsLetters() {
         <span
           key={i}
           ref={el => { letterRefs.current[i] = el; }}
-          className="absolute top-0 left-0 select-none pointer-events-none text-white leading-none"
+          className={`absolute top-0 left-0 select-none pointer-events-none leading-none ${isDark ? 'text-white' : 'text-black'}`}
           style={{
             fontFamily: "'Fredoka One', cursive",
             fontSize: 'clamp(90px, 16vw, 200px)',
-            WebkitTextStroke: '2px rgba(255,255,255,0.1)',
+            WebkitTextStroke: isDark ? '2px rgba(255,255,255,0.1)' : '2px rgba(0,0,0,0.1)',
             willChange: 'transform',
             zIndex: 5,
             opacity: 0,
