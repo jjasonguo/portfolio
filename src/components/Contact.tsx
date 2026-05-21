@@ -57,7 +57,7 @@ export default function Contact() {
             variants={item}
             className={`mt-16 font-mono text-xs ${isDark ? 'text-zinc-600' : 'text-zinc-400'}`}
           >
-            &copy; {new Date().getFullYear()} Jason Guo. Built with Claude Code &amp; a lot of tokens
+            &copy; {new Date().getFullYear()} Jason Guo.
           </motion.p>
         </motion.div>
       </div>

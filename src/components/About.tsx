@@ -50,7 +50,7 @@ export default function About() {
             <p className={`text-lg leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               I am interested in everything from machine learning and AI to full-stack web development.
               On campus, I am involved in{' '}
-              <span className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>Cornell DTI</span> where I ship products facing the cornell community and{' '}
+              <span className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>Cornell DTI</span> where I ship products facing the Cornell community and{' '}
               <span className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>Cornell Quant Fund</span> where I apply math and programming knowledge to financial markets.
               This summer, I will be interning at{' '}
               <span className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>TikTok</span> on the Ads Interface and Platform Team in San Jose!
