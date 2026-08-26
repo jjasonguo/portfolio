@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev        # start Vite dev server at http://localhost:5173/portfolio/
+npm run dev        # start Vite dev server at http://localhost:5173/
 npm run build      # tsc type-check + Vite build → dist/
 npm run lint       # ESLint (TS + React hooks rules)
 npm run preview    # serve the dist/ build locally
@@ -22,7 +22,8 @@ Single-page portfolio with no router. Navigation is anchor-link based (`#about`,
 
 ## Key constraints
 
-- **`base: '/portfolio/'`** in `vite.config.ts` is required for GitHub Pages subdirectory hosting — do not remove it. All asset paths must be relative or use Vite's `import` system.
+- **`base: '/'`** in `vite.config.ts` — the site is served from the custom domain `www.jjasonguo.com`, not a GitHub Pages subdirectory, so the base must stay at root. All asset paths must be relative or use Vite's `import` system.
+- **`public/CNAME`** holds the custom domain and must stay committed. `npm run deploy` replaces the entire `gh-pages` branch with `dist/`; Vite copies `public/CNAME` → `dist/CNAME`, which is the only thing preserving the custom domain across deploys. Delete it and GitHub Pages reverts to the default `.github.io` URL.
 - **Tailwind CSS v4** is configured via the `@tailwindcss/vite` Vite plugin. There is no `tailwind.config.js` or `postcss.config`. Global styles live in `src/index.css` which opens with `@import "tailwindcss"`.
 - **If routing is ever added**, use `HashRouter` (not `BrowserRouter`) to avoid 404s on GitHub Pages page refresh.
 
