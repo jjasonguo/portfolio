@@ -15,8 +15,7 @@ const experiences = [
     logoSize: 'w-25 h-25',
     detail: 'Ads Interface and Platform',
     period: 'Summer 2026',
-    description: 'doomscrolling',
-    upcoming: true,
+    description: 'Worked on infrastructure for the API Gateway supporting 150+ million daily requests',
   },
   {
     role: 'Fullstack Development Intern',
@@ -26,7 +25,6 @@ const experiences = [
     detail: null,
     period: '2024 – 2025',
     description: 'Vibecoded a CRM app supporting 150+ home service business owners',
-    upcoming: false,
   },
   {
     role: 'Software Engineer Intern',
@@ -35,7 +33,6 @@ const experiences = [
     detail: null,
     period: '2023 – 2024',
     description: 'Learned about RAG',
-    upcoming: false,
   },
   {
     role: 'Bioinformatics Intern',
@@ -44,7 +41,6 @@ const experiences = [
     detail: null,
     period: '2022 – 2023',
     description: 'ChIP-seq on lung fibroblasts',
-    upcoming: false,
   },
 ];
 
@@ -85,13 +81,6 @@ export default function Experience() {
             >
               <div className="pr-6">
                 <p className="font-mono text-sm text-zinc-500">{exp.period}</p>
-                {exp.upcoming && (
-                  <span className={`inline-block mt-2 font-mono text-xs px-2 py-0.5 border rounded ${
-                    isDark ? 'border-white/20 text-zinc-400' : 'border-black/20 text-zinc-500'
-                  }`}>
-                    upcoming
-                  </span>
-                )}
               </div>
               <img
                 src={exp.logo}
